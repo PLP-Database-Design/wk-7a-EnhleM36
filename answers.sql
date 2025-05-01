@@ -1,11 +1,9 @@
 -- Question 1
 USE salesdb;
 
--- Create table without column Products
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY,
-    CustomerName VARCHAR(100)
-);
+-- Delete Products column from Orders table
+ALTER TABLE Orders 
+DROP COLUMN Products;
 
 -- Create a new table, OrderProducts, for individual products
 CREATE TABLE OrderProducts (
@@ -14,13 +12,6 @@ CREATE TABLE OrderProducts (
     Product VARCHAR(100),
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
-
--- Insert data into Orders table
-INSERT INTO Orders (OrderID, CustomerName)
-VALUES 
-(101, 'John Doe'),
-(102, 'Jane Smith'),
-(103, 'Emily Clark');
 
 --Inserting data into OrderProducts table
 INSERT INTO OrderProducts (OrderID, Product)
@@ -34,11 +25,12 @@ VALUES
 
 -- Question 2
 
--- Create a new Orders table
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY,
-    CustomerName VARCHAR(100)
-);
+USE salesdb; 
+
+-- Delete   Product, Quanity columns from  table
+ALTER TABLE Orders
+DROP COLUMN Product, 
+DROP COLUMN Quantity;
 
 -- Create a table for OrderItems for columns to depend on primary key
 CREATE TABLE OrderItems (
@@ -49,12 +41,6 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
--- Insterting Data into Orders table
-INSERT INTO Orders (OrderID, CustomerName)
-VALUES
-(101, 'John Doe'),
-(102, 'Jane Smith'),
-(103, 'Emily Clark');
 
 -- Inserting data into OrderItems table
 INSERT INTO OrderItems (OrderID, Product, Quantity)
