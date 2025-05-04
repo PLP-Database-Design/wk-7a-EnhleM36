@@ -1,11 +1,11 @@
 -- Question 1
 USE salesdb;
 
--- Delete Products column from Orders table
+-- Step 1: Delete Products column from Orders table 
 ALTER TABLE Orders 
 DROP COLUMN Products;
 
--- Create a new table, OrderProducts, for individual products
+-- Step 2: Create a new table, OrderProducts, to hold products for each order
 CREATE TABLE OrderProducts (
     ProductID INT AUTO_INCREMENT PRIMARY KEY,
     OrderID INT,
@@ -13,7 +13,7 @@ CREATE TABLE OrderProducts (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
---Inserting data into OrderProducts table
+-- Step 3: Insert data into OrderProducts table
 INSERT INTO OrderProducts (OrderID, Product)
 VALUES 
 (101, 'Laptop'),
@@ -24,15 +24,14 @@ VALUES
 (103, 'Phone');
 
 -- Question 2
+USE salesdb;
 
-USE salesdb; 
-
--- Delete   Product, Quanity columns from  table
+-- Step 1: Delete Product and Quantity columns from Orders table 
 ALTER TABLE Orders
-DROP COLUMN Product, 
+DROP COLUMN Product,
 DROP COLUMN Quantity;
 
--- Create a table for OrderItems for columns to depend on primary key
+-- Step 2: Create OrderItems table with composite primary key
 CREATE TABLE OrderItems (
     OrderID INT,
     Product VARCHAR(100),
@@ -41,8 +40,7 @@ CREATE TABLE OrderItems (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
-
--- Inserting data into OrderItems table
+-- Step 3: Insert data into OrderItems table
 INSERT INTO OrderItems (OrderID, Product, Quantity)
 VALUES
 (101, 'Laptop', 2),
@@ -51,5 +49,3 @@ VALUES
 (102, 'Keyboard', 1),
 (102, 'Mouse', 2),
 (103, 'Phone', 1);
-
-
